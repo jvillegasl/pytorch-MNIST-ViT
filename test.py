@@ -8,7 +8,7 @@ import model.model as module_arch
 from parse_config import ConfigParser
 
 
-def main(config):
+def main(config: ConfigParser):
     logger = config.get_logger('test')
 
     # setup data_loader instances
