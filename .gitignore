@@ -111,3 +111,5 @@ exports/
 .vscode/
 .idea/
 __MACOSX/
+
+*.ipynb
