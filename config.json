@@ -8,7 +8,7 @@
     },
     "data_loader": {
         "type": "MnistDataLoader",
-        "args":{
+        "args": {
             "data_dir": "data/",
             "batch_size": 256,
             "shuffle": true,
@@ -18,16 +18,14 @@
     },
     "optimizer": {
         "type": "Adam",
-        "args":{
-            "lr": 0.001,
+        "args": {
+            "lr": 0.0005,
             "weight_decay": 0,
             "amsgrad": false
         }
     },
-    "loss": "cross_entropy",
-    "metrics": [
-        "accuracy", "top_k_acc"
-    ],
+    "loss": "log_nll_loss",
+    "metrics": ["accuracy", "top_k_acc"],
     "lr_scheduler": {
         "type": "StepLR",
         "args": {
@@ -41,10 +39,14 @@
         "save_dir": "saved/",
         "save_period": 1,
         "verbosity": 2,
-        
+
         "monitor": "min val_loss",
         "early_stop": 10,
 
         "tensorboard": true
+    },
+    "export": {
+        "dummy_input": [1, 1, 28, 28],
+        "file_name": "vit"
     }
 }
