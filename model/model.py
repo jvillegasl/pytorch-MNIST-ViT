@@ -17,7 +17,7 @@ class MnistModel(BaseModel):
 
     d_token: int = 128
     n_heads: int = 4
-    n_encoders: int = 8
+    n_encoders: int = 3
     n_classes: int = 10
 
     linear_mapper: nn.Conv2d
@@ -54,6 +54,7 @@ class MnistModel(BaseModel):
         # 5) Classification MLP (Multi-Layer Perceptron)
         self.classifier = nn.Sequential(
             nn.Linear(self.d_token, self.n_classes),
+            nn.Softmax(dim=-1)
         )
 
     def forward(self, x):
@@ -84,7 +85,5 @@ class MnistModel(BaseModel):
 
         y = self.classifier(y)
         # shape: [batch_size, n_classes]
-
-        # y = nn.functional.softmax(y, dim=-1)
 
         return y
